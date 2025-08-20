@@ -11,14 +11,13 @@ const GuardianSchema = new Schema<gurdianType>(
   },
   { _id: false } // 👈 prevents creating an extra _id for the subdocument
 );
-const userNameSchema = new Schema({
-  firstName: String,
-  middleName: String,
-  lastName: String,
-});
 const studentSchema = new Schema<Student>({
   id: { type: String },
-  name: userNameSchema,
+  name: {
+    firstName: String,
+    middleName: String,
+    lastName: String,
+  },
   gender: {
     type: String,
     enum: ["Male", "Female"],
@@ -45,3 +44,5 @@ const studentSchema = new Schema<Student>({
     enum: ["active", "blocked"],
   },
 });
+// create a model
+export const StudentModel = model<Student>("Student", studentSchema);

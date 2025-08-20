@@ -1,11 +1,13 @@
 import express from "express";
-export const app = express();
-const port = 3000;
+import cors from "cors";
+import { studentRouter } from "./app/modules/student/student.route.js";
+const app = express();
+app.use(express.json());
+app.use(cors());
+// application router
+app.use("api/v1/students", studentRouter);
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-console.log(process.cwd());
+export default app;
 //# sourceMappingURL=app.js.map

@@ -1,3 +1,4 @@
 import dotenv from "dotenv";
-dotenv.config({ path: "/custom/path/to/.env" });
+import path from "path";
+dotenv.config({ path: path.join(process.cwd(), ".env") });
 //# sourceMappingURL=index.js.map

@@ -1,15 +1,19 @@
 import app from "./app.js";
+import mongoose from "mongoose";
+import "dotenv/config"; // load .env
+import dotenv from "dotenv";
 
-const mongoose = require("mongoose");
+async function main() {
+  try {
+    await mongoose.connect(process.env.DB_URL as string);
+    console.log("Database connected");
 
-try {
-  main().catch((err) => console.log(err));
-  async function main() {
-    await mongoose.connect(process.env.DB_URL);
+    app.listen(process.env.PORT, () => {
+      console.log(`Example app listening on port ${process.env.PORT}`);
+    });
+  } catch (err) {
+    console.error("Error starting the app:", err);
   }
-  app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port ${process.env.POR}`);
-  });
-} catch (erro) {
-  console.log("something went wrong while starting the app");
 }
+
+main();
