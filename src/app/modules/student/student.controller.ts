@@ -18,7 +18,6 @@ const createStudent = async (req: Request, res: Response) => {
 };
 const getStudents = async (req: Request, res: Response) => {
   try {
-    const students = req.body;
     const result = await StudentServices.getStudentsFromDB();
     res.status(200).json({
       success: true,
@@ -29,4 +28,21 @@ const getStudents = async (req: Request, res: Response) => {
     console.log("something went wrong while getting students data");
   }
 };
-export const studentController = { createStudent, getStudents };
+const getSingleStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params;
+    const result = await StudentServices.getStudentFromDB(studentId as string);
+    res.status(200).json({
+      success: true,
+      message: "Single students data retrieve",
+      data: result,
+    });
+  } catch (error) {
+    console.log("something went wrong while getting students data");
+  }
+};
+export const studentController = {
+  createStudent,
+  getStudents,
+  getSingleStudent,
+};
