@@ -26,5 +26,5 @@ export type Student = {
   pernamentAddress: string;
   gurdian: gurdianType;
   profileImg?: string;
-  isActive: "active" | "inActive";
+  isActive: "active" | "blocked";
 };

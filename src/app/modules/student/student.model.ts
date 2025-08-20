@@ -1,6 +1,6 @@
 import { Schema, model, connect } from "mongoose";
-import type { Student } from "./student.interface.js";
-const GuardianSchema = new Schema<GuardianType>(
+import type { gurdianType, Student } from "./student.interface.js";
+const GuardianSchema = new Schema<gurdianType>(
   {
     fatherName: { type: String, required: true },
     fatherOccupation: { type: String, required: true },
@@ -11,13 +11,14 @@ const GuardianSchema = new Schema<GuardianType>(
   },
   { _id: false } // 👈 prevents creating an extra _id for the subdocument
 );
+const userNameSchema = new Schema({
+  firstName: String,
+  middleName: String,
+  lastName: String,
+});
 const studentSchema = new Schema<Student>({
   id: { type: String },
-  name: {
-    firstName: String,
-    middleName: String,
-    lastName: String,
-  },
+  name: userNameSchema,
   gender: {
     type: String,
     enum: ["Male", "Female"],
@@ -41,6 +42,6 @@ const studentSchema = new Schema<Student>({
   profileImg: { type: String, required: false },
   isActive: {
     type: String,
-    enum: ["active", "inActive"],
+    enum: ["active", "blocked"],
   },
 });
