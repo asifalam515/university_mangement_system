@@ -16,7 +16,7 @@ export type Student = {
     middleName: string;
     lastName: string;
   };
-  gender: "Male" | "Female";
+  gender: "Male" | "Female" | "Other";
   email: string;
   dateOfBirth: string;
   contactNo: string;
