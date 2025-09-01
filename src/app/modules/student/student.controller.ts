@@ -1,8 +1,17 @@
 import type { Request, Response } from "express";
 import { StudentServices } from "./student.service.js";
+import Joi from "joi";
 
 const createStudent = async (req: Request, res: Response) => {
   try {
+    // creating a shcema validation using joi
+    const createStudentJoiSchema = Joi.object({
+      id: Joi.string(),
+      name: {
+        firstName: Joi.string(),
+      },
+    });
+
     const student = req.body.student;
 
     //   will call service funciton to send this data
