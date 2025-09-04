@@ -13,7 +13,7 @@ export type Student = {
   id: string;
   name: {
     firstName: string;
-    middleName: string;
+    middleName?: string | undefined;
     lastName: string;
   };
   gender: "Male" | "Female" | "Other";
@@ -21,10 +21,19 @@ export type Student = {
   dateOfBirth: string;
   contactNo: string;
   emergencyContactNo: string;
-  bloodGroup?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
+  bloodGroup?:
+    | "A+"
+    | "A-"
+    | "B+"
+    | "B-"
+    | "AB+"
+    | "AB-"
+    | "O+"
+    | "O-"
+    | undefined;
   presentAddress: string;
   pernamentAddress: string;
   gurdian: gurdianType;
-  profileImg?: string;
+  profileImg?: string | undefined;
   isActive: "active" | "blocked";
 };
